@@ -22,17 +22,12 @@ export default(state = initialState, action) => {
     case USER_LOGIN_FAILED:
       return {...state, isLoading: false, err: action.payload}
     case USER_SIGNUP_PENDING:
-      return state
+      return {...state, isLoading: true}
     case USER_SIGNUP_SUCCESS:
-      return state
+      return {...state, isLoading: false, user: action.payload.data}
     case USER_SIGNUP_FAILED:
-      return state
+      return {...state, isLoading: false, err: action.payload}
     default:
       return state;
   }
-};
-
-var counter = 0;
-function makeId() {
-  return counter++;
 }
