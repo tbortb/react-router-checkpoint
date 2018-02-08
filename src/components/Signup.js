@@ -12,7 +12,7 @@ import {
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userSignup } from '../actions/auth'
+import { userSignup } from '../actions/auth.actions'
 
 export class Signup extends Component {
   state = {
