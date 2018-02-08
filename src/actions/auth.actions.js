@@ -34,8 +34,7 @@ export const userSignup = (credentials) => {
       dispatch({type: USER_LOGIN_PENDING})
       let userObject = await axios.get(`${BASE_URL}/users`)
       dispatch({
-        type: USER_SIGNUP_SUCCESS,
-        payload: userObject
+        type: USER_SIGNUP_SUCCESS
       })
     } catch(err) {
       dispatch({
