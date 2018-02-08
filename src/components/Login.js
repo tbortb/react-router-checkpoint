@@ -12,7 +12,7 @@ import {
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userLogin } from '../../actions/auth'
+import { userLogin } from '../actions/auth.actions'
 
 class Login extends Component {
   submitLogin = creds => {

@@ -5,7 +5,7 @@ import {
   USER_SIGNUP_PENDING,
   USER_SIGNUP_SUCCESS,
   USER_SIGNUP_FAILED
-}
+} from '../actions/auth.actions'
 
 let initialState = {
   isLoading: false,
