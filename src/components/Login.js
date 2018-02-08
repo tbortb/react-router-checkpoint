@@ -16,7 +16,7 @@ import { userLogin } from '../../actions/auth'
 
 class Login extends Component {
   submitLogin = creds => {
-    this.props.userLogin(creds, this.props.history)
+    console.log('creds')
   }
 
   render() {
