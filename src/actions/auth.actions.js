@@ -33,11 +33,10 @@ export const userSignup = (credentials) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
       let isSignedUp = await axios.get(`${BASE_URL}/users`)
-      if(isSignedUp) {
-        dispatch({
-          type: USER_SIGNUP_SUCCESS
-        })
-      }
+      dispatch({
+        type: USER_SIGNUP_SUCCESS,
+        payload: isSignedUp
+      })
     } catch(err) {
       dispatch({
         type: USER_SIGNUP_FAILED,
