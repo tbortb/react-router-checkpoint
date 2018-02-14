@@ -4,8 +4,10 @@ import {
   Row,
   Col
 } from 'reactstrap'
+import { connect } from 'react-redux'
 
 const UserProfile = (props) => {
+  console.log('up props', props)
   return (
     <div>
       <Container>
@@ -19,8 +21,11 @@ const UserProfile = (props) => {
             <img src="http://via.placeholder.com/350x450" alt="profile" />
           </Col>
           <Col>
-            <h3>Name: The user's name</h3>
-            <h3>Username: The username</h3>
+            <h3>Name: {props.user.name}</h3>
+            <h3>Email: {props.user.email}</h3>
+            <h3>Company: {props.user.company}</h3>
+            <h3>Phone: {props.user.phone}</h3>
+            <h3>Address: {props.user.address}</h3>
           </Col>
         </Row>
       </Container>
@@ -28,4 +33,10 @@ const UserProfile = (props) => {
   )
 }
 
-export default UserProfile
+function mapStateToProps(state) {
+  return {
+    user: state.auth.user
+  }
+}
+
+export default connect(mapStateToProps, null)(UserProfile)
