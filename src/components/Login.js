@@ -7,14 +7,18 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Input
 } from 'reactstrap'
-import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogin } from '../actions/auth.actions'
 
 class Login extends Component {
+  state = {
+    email: '',
+    password: ''
+  }
   submitLogin = creds => {
     console.log('creds')
   }
@@ -31,25 +35,27 @@ class Login extends Component {
               boxShadow: '3px 3px 47px 0px rgba(0,0,0,0.5)'
             }}
           >
-            <Form onSubmit={this.props.handleSubmit(this.submitLogin)}>
+            <Form onSubmit={this.submitLogin}>
               <FormGroup>
-                <Label for="email">Email</Label>
-                <Field
-                  className="form-control"
-                  name="email"
-                  component="input"
+                <Label for="email-field">Email</Label>
+                <Input
                   type="email"
-                  id="email"
+                  name="email"
+                  id="email-field"
+                  placeholder="email"
+                  value={this.state.email}
+                  onChange={e => this.setState({email: e.target.value})}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="password">Password</Label>
-                <Field
-                  className="form-control"
-                  name="password"
-                  component="input"
+                <Label for="password-field">Password</Label>
+                <Input
                   type="password"
-                  id="password"
+                  name="password"
+                  id="pass-field"
+                  placeholder="password"
+                  value={this.state.password}
+                  onChange={e => this.setState({password: e.target.value})}
                 />
               </FormGroup>
               {this.props.showLoginError ? (
@@ -67,11 +73,6 @@ class Login extends Component {
     )
   }
 }
-
-Login = reduxForm({
-  // a unique name for the form
-  form: 'loginform'
-})(Login)
 
 function mapStateToProps(state) {
   return {

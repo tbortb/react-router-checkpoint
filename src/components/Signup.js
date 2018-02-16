@@ -7,9 +7,9 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Input
 } from 'reactstrap'
-import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userSignup } from '../actions/auth.actions'
@@ -17,17 +17,27 @@ import { userSignup } from '../actions/auth.actions'
 export class Signup extends Component {
   state = {
     isValid: true,
-    passwordClasses: 'form-control'
+    passwordClasses: 'form-control',
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    address: '',
+    password: '',
+    verify_password: ''
   }
-  userSignup = user => {
-    console.log('user', user)
-    if (user.password !== user.verify_password) {
-      this.setState({ 
+  userSignup = e => {
+    e.preventDefault()
+    let { name, email, company, phone, password, verify_password, address } = this.state
+    if (!password || password !== verify_password || !verify_password) {
+      this.setState({
         passwordClasses: this.state.passwordClasses + ' is-invalid',
         isValid: false
       })
     } else {
-      this.props.userSignup(user, this.props.history)
+      let newUser = {name, email, company, phone, password, address}
+      console.log('newUser', newUser)
+      this.props.userSignup(newUser, this.props.history)
     }
   }
 
@@ -43,49 +53,100 @@ export class Signup extends Component {
               boxShadow: '3px 3px 47px 0px rgba(0,0,0,0.5)'
             }}
           >
-            <Form onSubmit={this.props.handleSubmit(this.userSignup)}>
+            <Form onSubmit={this.userSignup}>
               <FormGroup>
                 <Label for="name">Name</Label>
-                <Field
-                  name="name"
-                  component="input"
-                  className="form-control"
+                <Input
                   type="text"
-                  id="name"
+                  name="name"
+                  id="name-field"
+                  placeholder="name"
+                  value={this.state.name}
+                  onChange={e =>
+                    this.setState({ name: e.target.value })
+                  }
                 />
               </FormGroup>
               <FormGroup>
                 <Label for="email">Email</Label>
-                <Field
-                  name="email"
-                  component="input"
-                  className="form-control"
+                <Input
                   type="email"
-                  id="email"
+                  name="email"
+                  id="email-field"
+                  placeholder="email"
+                  value={this.state.email}
+                  onChange={e =>
+                    this.setState({ email: e.target.value })
+                  }
+                />
+              </FormGroup>
+               <FormGroup>
+                <Label for="company">Company</Label>
+                <Input
+                  type="text"
+                  name="company"
+                  id="company-field"
+                  placeholder="company"
+                  value={this.state.company}
+                  onChange={e =>
+                    this.setState({ company: e.target.value })
+                  }
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="name">Phone</Label>
+                <Input
+                  type="text"
+                  name="phone"
+                  id="phone-field"
+                  placeholder="phone"
+                  value={this.state.phone}
+                  onChange={e =>
+                    this.setState({ phone: e.target.value })
+                  }
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="address">Address</Label>
+                <Input
+                  type="text"
+                  name="address"
+                  id="address-field"
+                  placeholder="address"
+                  value={this.state.address}
+                  onChange={e =>
+                    this.setState({ address: e.target.value })
+                  }
                 />
               </FormGroup>
               <FormGroup>
                 <Label for="password">Password</Label>
-                <Field
-                  name="password"
-                  component="input"
-                  className={this.state.passwordClasses}
+                <Input
                   type="password"
-                  id="password"
-                  valid={this.state.isValid}
+                  name="password"
+                  id="password-field"
+                  placeholder="password"
+                  value={this.state.password}
+                  onChange={e =>
+                    this.setState({ password: e.target.value })
+                  }
                 />
               </FormGroup>
               <FormGroup>
                 <Label for="verify_password">Verify Password</Label>
-                <Field
-                  name="verify_password"
-                  component="input"
-                  className={this.state.passwordClasses}
+                <Input
                   type="password"
+                  name="password"
                   id="verify_password"
-                  valid={this.state.isValid}
+                  placeholder="password"
+                  value={this.state.verify_password}
+                  onChange={e =>
+                    this.setState({ verify_password: e.target.value })
+                  }
                 />
-                { !this.state.isValid ? <Alert color="danger">Passwords do not match</Alert> : null}
+                {!this.state.isValid ? (
+                  <Alert color="danger">Passwords do not match</Alert>
+                ) : null}
               </FormGroup>
               <Button color="primary" type="submit">
                 Submit
@@ -97,11 +158,6 @@ export class Signup extends Component {
     )
   }
 }
-
-Signup = reduxForm({
-  // a unique name for the form
-  form: 'signup-form'
-})(Signup)
 
 function mapDispatchToProps(dispatch) {
   return {
