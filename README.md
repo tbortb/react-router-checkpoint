@@ -24,6 +24,8 @@ The endpoint for the users that will be able to sign in are accessible at the `/
 
 **NOTE:** The existing users' passwords are stored as plain text, specifically as `hello`, in the database for convenience, as well, so they are easily viewable in either Postico, `psql`, or your database tool of choice.
 
+> NOTE: This was built with the [Reactstrap Component Library](https://reactstrap.github.io).
+
 ## User Stories
 
 - As a user, when I navigate to `/`, I am automatically redirected to `/login`
