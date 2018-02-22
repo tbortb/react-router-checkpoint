@@ -10,13 +10,13 @@ export const USER_LOGOUT = 'USER_LOGOUT'
 
 const BASE_URL = 'http://localhost:8082'
 
-export const userLogin = (credentials) => {
+export const userLogin = ({email, password}) => {
   return async (dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
       let response = await fetch(`${BASE_URL}/api/login`, {
         method: "POST",
-        body: JSON.stringify(credentials)
+        body: JSON.stringify({email, password})
       })
       let userObject = await response.json()
       dispatch({

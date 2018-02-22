@@ -19,9 +19,6 @@ class Login extends Component {
     email: '',
     password: ''
   }
-  submitLogin = creds => {
-    console.log('creds')
-  }
 
   render() {
     return (
@@ -35,7 +32,7 @@ class Login extends Component {
               boxShadow: '3px 3px 47px 0px rgba(0,0,0,0.5)'
             }}
           >
-            <Form onSubmit={this.submitLogin}>
+            <Form>
               <FormGroup>
                 <Label for="email-field">Email</Label>
                 <Input
