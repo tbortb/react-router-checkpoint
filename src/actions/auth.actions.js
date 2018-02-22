@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const USER_LOGIN_PENDING = 'USER_LOGIN_PENDING'
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED'
@@ -16,7 +14,11 @@ export const userLogin = (credentials) => {
   return async (dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
-      let userObject = await axios.post(`${BASE_URL}/api/login`, credentials)
+      let response = await fetch(`${BASE_URL}/api/login`, {
+        method: "POST",
+        body: JSON.stringify(credentials)
+      })
+      let userObject = await response.json()
       dispatch({
         type: USER_LOGIN_SUCCESS,
         payload: userObject
@@ -34,7 +36,11 @@ export const userSignup = (newUser) => {
   return async (dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
-      let isSignedUp = await axios.post(`${BASE_URL}/api/users`, newUser)
+      let response = await fetch(`${BASE_URL}/api/users`, {
+        method: "POST",
+        body: JSON.stringify(newUser)
+      })
+      let isSignedUp = await response.json()
       dispatch({
         type: USER_SIGNUP_SUCCESS,
         payload: isSignedUp

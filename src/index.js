@@ -6,10 +6,10 @@ import Store from './store';
 import 'bootswatch/dist/materia/bootstrap.min.css'
 import './index.css';
 
-const StoreInstance = Store();
+const storeInstance = store();
 
 ReactDOM.render(
-  <Provider store={StoreInstance}>
+  <Provider store={storeInstance}>
    <App />
  </Provider>,
   document.getElementById('root')
