@@ -1,7 +1,5 @@
 import React from 'react'
-// import Login from './components/Login'
 import Signup from './components/Signup'
-// import UserProfile from './components/UserProfile'
 import TopNav from './components/TopNav'
 import './App.css'
 
