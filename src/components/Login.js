@@ -66,6 +66,11 @@ class Login extends Component {
             </Form>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <a href="/signup">Not a member?</a>
+          </Col>
+        </Row>
       </Container>
     )
   }
