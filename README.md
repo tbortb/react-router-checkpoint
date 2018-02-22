@@ -33,7 +33,7 @@ Your job is to hook up the routing for an authentication system that fits the fo
   - As a user, when I click the "Not a member?" link, I am redirected to `/signup`
 
 - Signup Route `/signup`
-  - As a user, when I properly fill out the signup form and click the submit button, I am redirected to `/login` to log in with my newly created credentials
+  - As a user, when I properly fill out the signup form and click the submit button, I am redirected to `/login`
   - As a user, when I improperly fill out the signup form and click the submit button, a message appears in the Signup component that tells me in some way I have filled out the form incorrectly
 
 - User Profile Route

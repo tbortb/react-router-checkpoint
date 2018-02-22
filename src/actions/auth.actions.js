@@ -30,7 +30,7 @@ export const userLogin = (credentials) => {
   }
 };
 
-export const userSignup = (newUser, history) => {
+export const userSignup = (newUser) => {
   return async (dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
