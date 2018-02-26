@@ -45,7 +45,7 @@ Your job is to hook up the routing for an authentication system that fits the fo
 
 ## Necessary Endpoints
 
-You will need to spin up your ['collective-api' server] to test the login credentials below
+You will need to spin up your ['collective-api' server](https://github.com/gSchool/collective-api) to test the login credentials below
 
 - `http://localhost:8082/users`
 
