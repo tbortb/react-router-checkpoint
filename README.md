@@ -1,4 +1,4 @@
-# 🚦 Checkpoint
+# Checkpoint
 
 ## Getting Started
 
@@ -42,6 +42,12 @@ Your job is to hook up the routing for an authentication system that fits the fo
 - Navbar
   - As a user, after I log in, the "Login" and "Sign up" buttons in the navigation bar should be replaced with "Log out"
   - As a user, when I click the "Log out" button in the navigation bar, I am taken back to `/login`
+
+## Necessary Endpoints
+
+You will need to spin up your ['collective-api' server] to test the login credentials below
+
+- `http://localhost:8082/users`
 
 ## Test Login
 
