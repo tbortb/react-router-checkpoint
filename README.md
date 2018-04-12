@@ -2,10 +2,10 @@
 
 ## Getting Started
 
-To get started with this checkpoint, you will need to clone and install dependencies for the following repo:
+To get started with this checkpoint, you will need to fork, clone, and install dependencies for the following repo:
 
 ```shell
-git clone https://github.com/gSchool/react-router-checkpoint.git
+git clone https://github.com/<your-github-handle>/react-router-checkpoint.git
 cd react-router-checkpoint
 npm install
 ```
