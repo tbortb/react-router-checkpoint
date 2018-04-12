@@ -16,6 +16,7 @@ export const userLogin = ({email, password}) => {
       dispatch({type: USER_LOGIN_PENDING})
       let response = await fetch(`${BASE_URL}/api/login`, {
         method: "POST",
+        headers: {'Content-Type':'application/json'},
         body: JSON.stringify({email, password})
       })
       let userObject = await response.json()
@@ -38,6 +39,7 @@ export const userSignup = (newUser) => {
       dispatch({type: USER_LOGIN_PENDING})
       let response = await fetch(`${BASE_URL}/api/users`, {
         method: "POST",
+        headers: {'Content-Type':'application/json'},
         body: JSON.stringify(newUser)
       })
       let isSignedUp = await response.json()
