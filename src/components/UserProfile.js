@@ -7,7 +7,9 @@ import {
 import { connect } from 'react-redux'
 
 const UserProfile = (props) => {
-  console.log('up props', props)
+  if(props.user.name === undefined){
+    props.history.push("/");
+  }
   return (
     <div>
       <Container>
