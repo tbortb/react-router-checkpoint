@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userSignup } from '../actions/auth.actions'
 
-export class Signup extends Component {
+class Signup extends Component {
   state = {
     isValid: true,
     passwordClasses: 'form-control',
@@ -38,6 +38,7 @@ export class Signup extends Component {
       let newUser = {name, email, company, phone, password, address}
       console.log('newUser', newUser)
       this.props.userSignup(newUser)
+      this.props.history.push("/login");
     }
   }
 

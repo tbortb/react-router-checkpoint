@@ -13,6 +13,7 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogin } from '../actions/auth.actions'
+import { Link, Redirect } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -20,9 +21,23 @@ class Login extends Component {
     password: ''
   }
 
+  checkCreadentials = e => {
+    e.preventDefault();
+    // console.log(this.props);
+    this.props.userLogin(this.state);
+    // console.log(this.props);
+    // if (!this.props.isLoading && !this.props.showLoginError) {
+    //   this.props.history.push("/userprofile")
+    // }
+  }
+
   render() {
+    console.log(this.state);
+    console.log(this.props);
+    console.log(this.props.user.name !== undefined);
     return (
       <Container className="main-wrapper">
+        {this.props.user.name !== undefined ? <Redirect to="/userprofile" /> : null}
         <Row style={{ marginTop: '15vh' }}>
           <Col
             lg={{ size: 6, offset: 3 }}
@@ -41,7 +56,7 @@ class Login extends Component {
                   id="email-field"
                   placeholder="email"
                   value={this.state.email}
-                  onChange={e => this.setState({email: e.target.value})}
+                  onChange={e => this.setState({ email: e.target.value })}
                 />
               </FormGroup>
               <FormGroup>
@@ -52,7 +67,7 @@ class Login extends Component {
                   id="pass-field"
                   placeholder="password"
                   value={this.state.password}
-                  onChange={e => this.setState({password: e.target.value})}
+                  onChange={e => this.setState({ password: e.target.value })}
                 />
               </FormGroup>
               {this.props.showLoginError ? (
@@ -60,10 +75,11 @@ class Login extends Component {
                   Either your email or password is incorrect. Please try again.
                 </Alert>
               ) : null}
-              <Button className="mr-3" type="submit" color="primary">
+              <Button className="mr-3" type="submit" color="primary"
+                onClick={this.checkCreadentials}>
                 Submit
               </Button>
-              <a href="/signup">Not a member?</a>
+              <Link to="/signup">Not a member?</Link>
             </Form>
           </Col>
         </Row>
@@ -74,7 +90,9 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    showLoginError: state.auth.showLoginError
+    showLoginError: state.auth.showLoginError,
+    isLoading: state.auth.isLoading,
+    user: state.auth.user
   }
 }
 

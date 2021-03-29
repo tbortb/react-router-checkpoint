@@ -7,9 +7,14 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  NavLink
+} from 'reactstrap';
+import { Link, Redirect } from "react-router-dom";
+import { connect } from 'react-redux'
+import { userLogout } from '../actions/auth.actions'
+import { bindActionCreators } from 'redux'
 
-export default class Example extends React.Component {
+class Example extends React.Component {
   state = {
     isOpen: false
   }
@@ -19,23 +24,48 @@ export default class Example extends React.Component {
     });
   }
   render() {
+    console.log(this.props)
     return (
       <div>
         <Navbar color="primary" dark expand="md">
           <NavbarBrand href="/">ProfileHub</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <a href="#" className="nav-link">Login</a>
-              </NavItem>
-              <NavItem>
-                <a href="#" className="nav-link">Signup</a>
-              </NavItem>
-            </Nav>
+            {this.props.user.name === undefined ?
+
+              <Nav className="ml-auto" navbar>
+                < NavItem >
+                  <Link to="/login" className="nav-link">Login</Link>
+                </NavItem>
+                <NavItem>
+                  <Link to="/signup" className="nav-link">Signup</Link>
+                </NavItem>
+              </Nav>
+              :
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <Link to="/login" className="nav-link"
+                  onClick={this.props.userLogout}>Logout</Link>
+                </NavItem>
+              </Nav>
+            }
           </Collapse>
         </Navbar>
-      </div>
+      </div >
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    user: state.auth.user
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    userLogout: bindActionCreators(userLogout, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Example)
